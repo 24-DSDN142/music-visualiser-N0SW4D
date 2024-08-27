@@ -5,52 +5,62 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   textFont('Verdana'); // please use CSS safe fonts
   rectMode(CENTER)
   textSize(24);
-  let mouthW = map(vocal, 0, 100, 20, 70);
-  let mouthH = map(vocal, 0, 100, 20, 40);
-  let stomp = map(drum, 0, 100, 440, 480)
+  let R = map(vocal, 0, 100, 0, 256);
+  let G = map(drum, 0, 100, 0, 256);
+  let B = map(bass, 0, 100, 0, 256);
+  let bounce = map(bass, 0, 100, 200, 300);
+
 
   strokeWeight(0);
 
-  //face
-  fill(255, 207, 77);
-  ellipse(450, 200, 200, 200);
-  rect(450, 300, 200, 200);
+  
+  drawMinion(150, 200, 300, 1);
+  drawMinion(400, 300, 200, 2);
+  drawMinion(650, 400, 100, 3);
+  drawMinion(900, bounce, 300, 4);
 
-  //legs
-  rect(380,480, 40, 70);
-  rect(520, stomp, 40, 70);
-  fill(38,38,38);
-  rect(380, 515, 45, 30);
-  rect(520, stomp+35, 45, 30);
+  //eyes
+  for (let i=0; i<4; i++){
+    //setting x and y
+    let x=150+250*i;
+    let y=200+100*i;
+    if (i==3) {y=bounce;} //if i==4 then y=bounce
 
-  //vest
-  fill(46, 77, 171);
-  rect(450, 400, 200, 100)
-  rect(360, 350, 20, 50)
-  rect(540, 350, 20, 50)
+    //the strap
+    fill(0,0,0);
+    rect(x, y, 200, 20);
 
-
-  //eye and goggles
-  fill(38,38,38);
-  rect(450, 200, 200, 20);
-  fill(128,128,128);
-  ellipse (450, 200, 120, 120);
-  fill(256,256,256);
-  ellipse (450, 200, 100, 100);
-  fill(98, 128, 222);
-  ellipse(450,200,50,50);
-  fill(0,0,0);
-  ellipse(450,200,35,35);
-  fill(256,256,256);
-  ellipse(465,185,30,30);
-
-  //Mouth
-  fill(0,0,0);
-  ellipse(450, 300, mouthW, mouthH);
+    //the goggles
+    fill(110,110,110);
+    if (i==0){fill(R,G,B);}
+    ellipse(x, y, 100, 100);
+    fill(256,256,256);
+    ellipse(x, y, 75, 75);
+  }
+  
+  
 
 }
 
+function drawMinion(cenX, cenY, height, type){
+  fill(250, 217, 117); //minion yellow
+  ellipse (cenX, cenY, 200, 200);
+  rect (cenX, cenY+height/2, 200, height)
 
+if (type==1){
+
+}
+if (type==2){
+
+}
+if (type==3){
+
+}
+if (type==4){
+  
+}
+
+}
 
 
 //  let bar_spacing = height / 10;
