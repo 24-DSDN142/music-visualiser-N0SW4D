@@ -1,10 +1,10 @@
-let R = 120;
-let G = 150;
-let B = 215;
+let R = 103;
+let G = 108;
+let B = 117;
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(R,G,B);
+  background(0,0,0);
   textFont('Verdana'); // please use CSS safe fonts
   rectMode(CENTER);
   textAlign(CENTER);
@@ -12,6 +12,82 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   stroke(0,0,0);
   strokeWeight(0);
 
+  let bam = map(vocal,0,100,0,256);
+  let times = 0;
+  let fall = counter;
+
+  //background timing
+  if (counter>6400){
+    let fade=counter-6400;
+    if (R>0){R-=(fade/3.88)/160}
+    if (G>0){G-=(fade/3.7)/160}
+    if (B>0){B-=(fade/3.42)/160}
+  }
+  fill(R,G,B);
+  if(counter > 6850) {fill(bam,0,0)}
+
+  strokeWeight(5);
+  rect(150,125,300,250);
+  rect(300,375,600,250);
+  rect(400,175,200,150);
+  rect(1150,350,100,300);
+  rect(1050,100,300,200);
+
+  beginShape();
+  vertex(300,0);
+  vertex(900,0);
+  vertex(900,250);
+  vertex(500,250);
+  vertex(500,100);
+  vertex(300,100);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(600,250);
+  vertex(800,250);
+  vertex(1000,500);
+  vertex(600,500);
+  endShape(CLOSE);
+
+  beginShape();
+  vertex(800,250);
+  vertex(900,250);
+  vertex(900,200);
+  vertex(1100,200);
+  vertex(1100,500);
+  vertex(1000,500);
+  endShape(CLOSE);
+
+  fill(0,0,0);
+  ellipse(20,20,5,5);
+  ellipse(20,270,5,5);
+  ellipse(20,480,5,5);
+  ellipse(20,230,5,5);
+  ellipse(280,20,5,5);
+  ellipse(280,230,5,5);
+  ellipse(320,20,5,5);
+  ellipse(320,80,5,5);
+  ellipse(320,120,5,5);
+  ellipse(480,120,5,5);
+  ellipse(515,85,5,5);
+  ellipse(790,265,5,5);
+  ellipse(830,265,5,5);
+  ellipse(880,20,5,5);
+  ellipse(880,230,5,5);
+  ellipse(915,265,5,5);
+  ellipse(920,20,5,5);
+  ellipse(920,180,5,5);
+  ellipse(920,220,5,5);
+  ellipse(975,490,5,5);
+  ellipse(1010,490,5,5);
+  ellipse(1080,220,5,5);
+  ellipse(1080,490,5,5);
+  ellipse(1120,220,5,5);
+  ellipse(1120,490,5,5);
+  ellipse(1180,20,5,5);
+  ellipse(1180,180,5,5);
+  ellipse(1180,220,5,5);
+  ellipse(1180,490,5,5);
 
 
   //making the minions
@@ -274,7 +350,7 @@ function minionTypes(x, y, type, bass, vocal, drum, other){
 
 
     else if (type==3){
-      let sing = map(vocal,0,100,10,30);
+      let sing = map(vocal,0,100,5,45);
       
       drawMinion(x,y);
 
