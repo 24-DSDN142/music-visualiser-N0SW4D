@@ -1,22 +1,32 @@
+let R = 120;
+let G = 150;
+let B = 215;
 
 // vocal, drum, bass, and other are volumes ranging from 0 to 100
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(165, 244, 250);
+  background(R,G,B);
   textFont('Verdana'); // please use CSS safe fonts
-  rectMode(CENTER)
-  textSize(24);
-  let R = map(vocal, 0, 100, 0, 256);
-  let G = map(drum, 0, 100, 0, 256);
-  let B = map(bass, 0, 100, 0, 256);
-  let bounce = map(drum, 0, 100, 200, 300);
-
+  rectMode(CENTER);
+  textAlign(CENTER);
+  textSize(50);
   stroke(0,0,0);
   strokeWeight(0);
 
-  //making minions
-  minionTypes(150,200,1,bass,vocal,drum,other);
-  minionTypes(650,200,3,bass,vocal,drum,other);
-  minionTypes(400,250,2,bass,vocal,drum,other);
+
+
+  //making the minions
+  minionTypes(150,200,1,bass,vocal,drum,other); //Guitarist
+  minionTypes(650,200,3,bass,vocal,drum,other); //Drummer
+  minionTypes(400,250,2,bass,vocal,drum,other); //Singer
+
+  //speech bubble
+  fill(256,256,256);
+  triangle(765,270,780,230,830,250);
+  rect(980,180,400,150);
+  fill(0,0,0);
+  text(words, 980, 200);
+
+
 }
 
 //To make a base minion
@@ -94,6 +104,7 @@ function minionTypes(x, y, type, bass, vocal, drum, other){
 
 
     //guitar
+    fill(R,0,0);
     triangle(-20,400,100,350,70,400);
     triangle(70,400,70,500,120,370);
     //handle or whatever its called
@@ -106,7 +117,7 @@ function minionTypes(x, y, type, bass, vocal, drum, other){
     vertex(70,400);
     endShape(CLOSE);
     //the end thing of guitar
-    fill(120,0,0);
+    fill(R,0,0);
     beginShape();
     vertex(255,235);
     vertex(255,225);
@@ -283,6 +294,48 @@ function minionTypes(x, y, type, bass, vocal, drum, other){
       fill(0,0,0);
       ellipse(675,280,sing,sing);
 
+      //suit
+      //shirt
+      fill(256,256,256);
+      beginShape();
+      vertex(600,310);
+      vertex(630,315);
+      vertex(680,330);
+      vertex(720,310);
+      vertex(720,450);
+      vertex(600,450);
+      endShape(CLOSE);
+      fill(200,200,200);
+      triangle(600,330,600,340,680,330);
+      //tie
+      fill(R,G,B);
+      beginShape();
+      vertex(680,330);
+      vertex(670,340);
+      vertex(675,350);
+      vertex(660,380);
+      vertex(680,400);
+      vertex(700,380);
+      vertex(685,350);
+      vertex(690,340);
+      endShape(CLOSE);
+      //jacket
+      fill(56, 82, 143);
+      beginShape();
+      vertex(550,300);
+      vertex(620,300);
+      vertex(680,400);
+      vertex(720,300);
+      vertex(750,300);
+      vertex(750,500);
+      vertex(550,500);
+      endShape(CLOSE);
+      //pockets
+      fill(42, 61, 105);
+      rect(600,430,50,5);
+      rect(735,430,30,5);
+
+
       //microphone
       fill(40,40,40);
       beginShape();
@@ -294,7 +347,28 @@ function minionTypes(x, y, type, bass, vocal, drum, other){
       fill(127, 144, 148);
       ellipse(700,300,30,30);
 
-      //arm
+
+      //arms
+      //left arm
+      fill(24, 36, 61);
+      triangle(710,325,710,365,688,325)
+      //hand
+      fill(256, 190, 90);
+      ellipse(700,330,30,30);
+      //sleeve
+      fill(42, 61, 105);
+      beginShape();
+      vertex(710,315);
+      vertex(730,345);
+      vertex(725,330);
+      vertex(765,330);
+      vertex(745,405);
+      vertex(710,365);
+      endShape(CLOSE);
+      ellipse(745,330,40,40);
+      //right arm
+      fill(24, 36, 61);
+      triangle(688,330,688,370,700,330);
       //hand
       fill(256, 190, 90);
       ellipse(700,340,30,30);
@@ -303,52 +377,11 @@ function minionTypes(x, y, type, bass, vocal, drum, other){
       beginShape();
       vertex(688,330);
       vertex(630,370);
-      vertex(600,300);
-      vertex(560,300);
+      vertex(600,325);
+      vertex(560,335);
       vertex(610,410);
       vertex(688,370);
       endShape(CLOSE);
-
-    }
-
-
-    else if (type==4){
-      
-    }    
+      ellipse(580,330,40,40);
+    }  
 }
-
-
-//  let bar_spacing = height / 10;
-  //  let bar_height = width / 12;
-  //  let bar_pos_x = width / 2;
- 
-
-  //  // vocal bar is red
-  //  fill(200, 0, 0);
-  //  rect(bar_pos_x, height / 2 + 1 * bar_spacing, 4 * vocal, bar_height);
-  //  fill(0);
-  //  text("vocals", bar_pos_x, height / 2 + 1 * bar_spacing + 8);
- 
-  //  // drum bar is green
-  //  fill(0, 200, 0);
-  //  rect(bar_pos_x, height / 2 + 2 * bar_spacing, 4 * drum, bar_height);
-  //  fill(0);
-  //  text("drums", bar_pos_x, height / 2 + 2 * bar_spacing + 8);
- 
-  //  // bass bar is blue
-  //  fill(50, 50, 240);
-  //  rect(bar_pos_x, height / 2 + 3 * bar_spacing, 4 * bass, bar_height);
-  //  fill(0);
-  //  text("bass", bar_pos_x, height / 2 + 3 * bar_spacing + 8);
- 
-  //  // other bar is white
-  //  fill(200, 200, 200);
-  //  rect(bar_pos_x, height / 2 + 4 * bar_spacing, 4 * other, bar_height);
-  //  fill(0);
-  //  text("other", bar_pos_x, height / 2 + 4 * bar_spacing + 8);
-  //  fill(255, 255, 0);
- 
-   // display "words"
-  //  textAlign(CENTER);
-  //  textSize(vocal);
-  //  text(words, width/2, height/3);
