@@ -1,5 +1,5 @@
-const canvasWidth = 540;
-const canvasHeight = 960;
+const canvasWidth = 1200;
+const canvasHeight = 500;
 
 
 let mainCanvas;
@@ -148,6 +148,7 @@ function draw() {
     let s2 = slider2.value();
     let s3 = slider3.value();
     let s4 = slider4.value();
+    
 
     draw_one_frame(w, s1, s2, s3, s4, 0);
   }
