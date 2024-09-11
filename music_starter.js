@@ -17,15 +17,33 @@ rectMode(CENTER);
    let fall = counter;
 
    //background timing
+   //for first time
+   //LIE DETECTOR TIME
+   fill(R,G,B);
+   if(counter>3435 && counter<3520) {fill(bam,0,bam);}
+
+   //for second time
+   //heats up the background the the beat drop
    if (counter>6400){
      let fade=counter-6400;
      if (R>0){R-=(fade/3.88)/160}
      if (G>0){G-=(fade/3.7)/160}
      if (B>0){B-=(fade/3.42)/160}
    }
-   fill(R,G,B);
+   if (counter>3520){fill(R,G,B);}
    if(counter > 6850) {fill(bam,0,0)}
 
+   //for third time
+   //cools down the background as the music cools
+   if (counter>8560){
+    fill(80/((counter-8560)/100),0,0);
+    if(counter>8850){
+      fill(0,0,1*(counter-8850)/50);
+      if(counter>9000){fill(0,0,bam/2);}
+    }
+   }
+
+   //making all the panels for the background
    strokeWeight(5);
    rect(150,125,300,250);
    rect(300,375,600,250);
@@ -58,6 +76,7 @@ rectMode(CENTER);
    vertex(1000,500);
    endShape(CLOSE);
 
+   //all the bolts in the background
    fill(0,0,0);
    ellipse(20,20,5,5);
    ellipse(20,270,5,5);
